@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Application.h"
+#include "Core/Application.h"
 
 namespace App {
 
@@ -14,7 +14,7 @@ namespace App {
 		void OnRender() override;
 		void OnEvent(SDL_Event& event) override;
 	private:
-		// Members
+		SDL_Rect m_Rect;
 	};
 
 }

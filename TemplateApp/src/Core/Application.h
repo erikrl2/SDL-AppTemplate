@@ -1,17 +1,16 @@
 #include <iostream>
 
-#define SDL_MAIN_HANDLED
 #include <SDL.h>
 
-int main();
+int main(int argc, char* argv[]);
 
 namespace App {
 
 	struct AppSpecification
 	{
 		std::string Name = "App";
-		uint32_t Width = 640;
-		uint32_t Height = 480;
+		int Width = 640;
+		int Height = 480;
 	};
 
 	class Application
@@ -20,15 +19,16 @@ namespace App {
 		Application(const AppSpecification& specs);
 		virtual ~Application();
 
-		SDL_Window* GetWindow() const { return m_Window; }
-		SDL_Renderer* GetRenderer() const { return m_Renderer; }
-		void Exit();
-
-		static Application& Get() { return *s_Game; }
-
 		virtual void OnUpdate(float ts) = 0;
 		virtual void OnRender() = 0;
 		virtual void OnEvent(SDL_Event& event) = 0;
+
+		SDL_Window* GetWindow() const { return m_Window; }
+		SDL_Renderer* GetRenderer() const { return m_Renderer; }
+		const AppSpecification& GetSpecs() const { return m_Specs; }
+		void Exit();
+
+		static Application& Get() { return *s_Game; }
 	private:
 		void Run();
 	private:
@@ -39,7 +39,7 @@ namespace App {
 		SDL_Renderer* m_Renderer;
 	private:
 		inline static Application* s_Game;
-		friend int ::main();
+		friend int ::main(int argc, char* argv[]);
 	};
 
 	App::Application* CreateApplication();

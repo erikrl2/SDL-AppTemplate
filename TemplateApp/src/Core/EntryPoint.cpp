@@ -1,12 +1,12 @@
 #include "Application.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-	SDL_SetMainReady();
-
 	auto app = App::CreateApplication();
 
 	app->Run();
 
 	delete app;
+
+	return 0;
 }

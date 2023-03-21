@@ -11,13 +11,12 @@ namespace App {
 		if (SDL_Init(SDL_INIT_VIDEO))
 		{
 			std::cout << SDL_GetError() << std::endl;
-			m_IsRunning = false;
+			exit(1);
 		}
 
-		m_Window = SDL_CreateWindow(m_Specs.Name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Specs.Width, m_Specs.Height, SDL_WINDOW_OPENGL);
-
+		int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
+		m_Window = SDL_CreateWindow(m_Specs.Name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Specs.Width, m_Specs.Height, flags);
 		m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
-		// TODO: Do other render init stuff
 	}
 
 	Application::~Application()
@@ -36,7 +35,7 @@ namespace App {
 			while (SDL_PollEvent(&event))
 			{
 				if (event.type == SDL_QUIT)
-					Exit();
+					m_IsRunning = false;
 
 				s_Game->OnEvent(event);
 			}
@@ -47,11 +46,14 @@ namespace App {
 
 			s_Game->OnUpdate(timeStep);
 
-			// TODO: Setup render
-			s_Game->OnRender();
-			// TODO: End render
+			SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+			SDL_RenderClear(m_Renderer);
 
-			SDL_Delay(16.6f);
+			s_Game->OnRender();
+
+			SDL_RenderPresent(m_Renderer);
+
+			SDL_Delay(14);
 		}
 	}
 
