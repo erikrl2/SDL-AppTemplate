@@ -1,9 +1,10 @@
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "TemplateApp" -- TODO: Rename
+project "TemplateApp"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++20"
+	staticruntime "On"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -14,19 +15,16 @@ project "TemplateApp" -- TODO: Rename
 		"src/**.cpp",
 	}
 
-	defines
-	{
-	}
-
 	includedirs
 	{
 		"src",
-		"vendor/SDL2-2.26.4/include"
+		"vendor/SDL2/include",
+		"vendor/Glad/include"
 	}
 
 	libdirs
 	{
-		"vendor/SDL2-2.26.4/lib"
+		"vendor/SDL2/lib"
 	}
 
 	links
@@ -48,13 +46,16 @@ project "TemplateApp" -- TODO: Rename
 		links
 		{
 			"sdl2d.lib",
-			"sdl2maind.lib"
+			"sdl2maind.lib",
+
+			"Glad"
 		}
 
 	filter "configurations:Release"
 		defines "NDEBUG"
 		runtime "Release"
 		optimize "On"
+		kind "WindowedApp"
 
 		links
 		{

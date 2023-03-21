@@ -1,9 +1,8 @@
 #include <iostream>
 
-#define SDL_MAIN_HANDLED
 #include <SDL.h>
 
-int main();
+int main(int argc, char* argv[]);
 
 namespace App {
 
@@ -20,15 +19,15 @@ namespace App {
 		Application(const AppSpecification& specs);
 		virtual ~Application();
 
-		SDL_Window* GetWindow() const { return m_Window; }
-		SDL_Renderer* GetRenderer() const { return m_Renderer; }
-		void Exit();
-
-		static Application& Get() { return *s_Game; }
-
 		virtual void OnUpdate(float ts) = 0;
 		virtual void OnRender() = 0;
 		virtual void OnEvent(SDL_Event& event) = 0;
+
+		void Exit() { m_IsRunning = false; }
+
+		SDL_Window* GetWindow() const { return m_Window; }
+
+		static Application& Get() { return *s_App; }
 	private:
 		void Run();
 	private:
@@ -36,13 +35,13 @@ namespace App {
 		bool m_IsRunning = true;
 	protected:
 		SDL_Window* m_Window;
-		SDL_Renderer* m_Renderer;
+		SDL_GLContext m_Context;
 	private:
-		inline static Application* s_Game;
-		friend int ::main();
+		inline static Application* s_App;
+		friend int ::main(int argc, char* argv[]);
 	};
 
-	App::Application* CreateApplication();
+	Application* CreateApplication();
 
 }
 

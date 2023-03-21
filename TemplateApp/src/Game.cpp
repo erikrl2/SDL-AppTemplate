@@ -13,7 +13,6 @@ namespace App {
 
 	void Game::OnUpdate(float ts)
 	{
-		printf("%f\n", ts);
 	}
 
 	void Game::OnRender()
@@ -22,14 +21,11 @@ namespace App {
 
 	void Game::OnEvent(SDL_Event& event)
 	{
-		switch (event.type)
-		{
-		}
 	}
 
 	Application* CreateApplication()
 	{
-		return new Game({"Test"});
+		return new Game({ "Test" });
 	}
 
 }
