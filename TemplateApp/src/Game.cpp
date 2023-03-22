@@ -1,29 +1,30 @@
 #include "Game.h"
 
+#include <SDL_image.h>
+
 namespace App {
 
 	Game::Game(const AppSpecification& specs)
 		: Application(specs)
 	{
-		m_Rect.x = 100;
-		m_Rect.y = 100;
-		m_Rect.w = 100;
-		m_Rect.h = 100;
+		m_Texture = IMG_LoadTexture(m_Renderer, "assets/test.png");
+
+		SDL_Surface* img = IMG_Load("assets/test.png");
+		IMG_SaveJPG(img, "assets/test-copy.jpg", 50);
 	}
 
 	Game::~Game()
 	{
+		SDL_DestroyTexture(m_Texture);
 	}
 
 	void Game::OnUpdate(float ts)
 	{
-		printf("%.0f FPS\n", 1 / ts);
 	}
 
 	void Game::OnRender()
 	{
-		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(m_Renderer, &m_Rect);
+		SDL_RenderCopy(m_Renderer, m_Texture, NULL, NULL);
 	}
 
 	void Game::OnEvent(SDL_Event& event)
