@@ -17,12 +17,13 @@ namespace App {
 
 	void Game::OnUpdate(float ts)
 	{
+		printf("%.0f FPS\n", 1 / ts);
 	}
 
 	void Game::OnRender()
 	{
 		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderDrawRect(m_Renderer, &m_Rect);
+		SDL_RenderFillRect(m_Renderer, &m_Rect);
 	}
 
 	void Game::OnEvent(SDL_Event& event)

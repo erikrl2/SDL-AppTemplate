@@ -18,12 +18,14 @@ project "TemplateApp"
 	includedirs
 	{
 		"src",
-		"vendor/SDL2/include"
+		"vendor/SDL2/include",
+		"vendor/SDL2_image/include"
 	}
 
 	libdirs
 	{
-		"vendor/SDL2/lib"
+		"vendor/SDL2/lib",
+		"vendor/SDL2_image/lib"
 	}
 
 	links
@@ -45,7 +47,8 @@ project "TemplateApp"
 		links
 		{
 			"sdl2d.lib",
-			"sdl2maind.lib"
+			"sdl2maind.lib",
+			"sdl2_imaged.lib"
 		}
 
 	filter "configurations:Release"
@@ -57,6 +60,7 @@ project "TemplateApp"
 		links
 		{
 			"sdl2.lib",
-			"sdl2main.lib"
+			"sdl2main.lib",
+			"sdl2_image.lib"
 		}
 

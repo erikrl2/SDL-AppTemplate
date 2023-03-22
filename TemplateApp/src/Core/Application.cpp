@@ -17,10 +17,13 @@ namespace App {
 		int flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 		m_Window = SDL_CreateWindow(m_Specs.Name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Specs.Width, m_Specs.Height, flags);
 		m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED);
+
+		SDL_RenderSetVSync(m_Renderer, 1);
 	}
 
 	Application::~Application()
 	{
+		SDL_DestroyRenderer(m_Renderer);
 		SDL_DestroyWindow(m_Window);
 		SDL_Quit();
 	}
@@ -52,8 +55,6 @@ namespace App {
 			s_Game->OnRender();
 
 			SDL_RenderPresent(m_Renderer);
-
-			SDL_Delay(14);
 		}
 	}
 
