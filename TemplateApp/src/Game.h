@@ -15,6 +15,7 @@ namespace App {
 		void OnEvent(SDL_Event& event) override;
 	private:
 		SDL_Rect m_Rect;
+		SDL_Texture* m_Text;
 	};
 
 }

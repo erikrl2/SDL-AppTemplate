@@ -1,29 +1,36 @@
 #include "Game.h"
 
+#include <SDL_ttf.h>
+
 namespace App {
 
 	Game::Game(const AppSpecification& specs)
 		: Application(specs)
 	{
-		m_Rect.x = 100;
-		m_Rect.y = 100;
-		m_Rect.w = 100;
-		m_Rect.h = 100;
+		TTF_Init();
+
+		TTF_Font* font = TTF_OpenFont("C:/Windows/Fonts/Arial.ttf", 24);
+		SDL_Surface* surface = TTF_RenderUTF8_Blended(font, "Hello World", { 255, 255, 255, 255 });
+
+		m_Rect = { 50, 50, surface->w, surface->h };
+		m_Text = SDL_CreateTextureFromSurface(m_Renderer, surface);
+
+		SDL_FreeSurface(surface);
+		TTF_CloseFont(font);
 	}
 
 	Game::~Game()
 	{
+		SDL_DestroyTexture(m_Text);
 	}
 
 	void Game::OnUpdate(float ts)
 	{
-		printf("%.0f FPS\n", 1 / ts);
 	}
 
 	void Game::OnRender()
 	{
-		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(m_Renderer, &m_Rect);
+		SDL_RenderCopy(m_Renderer, m_Text, NULL, &m_Rect);
 	}
 
 	void Game::OnEvent(SDL_Event& event)
