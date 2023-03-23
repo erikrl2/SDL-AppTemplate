@@ -8,7 +8,7 @@ namespace App {
 		SDL_assert(!s_Game);
 		s_Game = this;
 
-		if (SDL_Init(SDL_INIT_VIDEO))
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 		{
 			std::cout << SDL_GetError() << std::endl;
 			exit(1);

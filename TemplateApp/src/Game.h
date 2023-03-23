@@ -2,6 +2,8 @@
 
 #include "Core/Application.h"
 
+#include <SDL_mixer.h>
+
 namespace App {
 
 	class Game : public Application
@@ -14,7 +16,7 @@ namespace App {
 		void OnRender() override;
 		void OnEvent(SDL_Event& event) override;
 	private:
-		SDL_Rect m_Rect;
+		Mix_Music* m_Music;
 	};
 
 }

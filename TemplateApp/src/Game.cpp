@@ -5,25 +5,24 @@ namespace App {
 	Game::Game(const AppSpecification& specs)
 		: Application(specs)
 	{
-		m_Rect.x = 100;
-		m_Rect.y = 100;
-		m_Rect.w = 100;
-		m_Rect.h = 100;
+		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
+		m_Music = Mix_LoadMUS("assets/mp3.mp3");
+		Mix_VolumeMusic(2);
+		Mix_PlayMusic(m_Music, -1);
 	}
 
 	Game::~Game()
 	{
+		Mix_FreeMusic(m_Music);
+		Mix_CloseAudio();
 	}
 
 	void Game::OnUpdate(float ts)
 	{
-		printf("%.0f FPS\n", 1 / ts);
 	}
 
 	void Game::OnRender()
 	{
-		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(m_Renderer, &m_Rect);
 	}
 
 	void Game::OnEvent(SDL_Event& event)
