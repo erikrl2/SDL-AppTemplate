@@ -39,7 +39,8 @@ project "TemplateApp"
 		"winmm.lib",
 		"imm32.lib",
 		"version.lib",
-		"setupapi.lib"
+		"setupapi.lib",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
