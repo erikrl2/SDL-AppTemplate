@@ -17,13 +17,13 @@ namespace App {
 	{
 		uint64_t lastTime = SDL_GetTicks64();
 
-		while (m_IsRunning)
+		while (m_Running)
 		{
 			SDL_Event event;
 			while (SDL_PollEvent(&event))
 			{
 				if (event.type == SDL_QUIT)
-					m_IsRunning = false;
+					m_Running = false;
 
 				OnEvent(event);
 			}

@@ -25,7 +25,7 @@ namespace App {
 	private:
 		void Run();
 	protected:
-		bool m_IsRunning = true;
+		bool m_Running = true;
 		GPU_Target* m_Screen;
 	private:
 		friend int ::main(int argc, char* argv[]);

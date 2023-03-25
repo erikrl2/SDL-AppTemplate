@@ -22,7 +22,8 @@ project "TemplateApp"
 		"vendor/SDL2_image/include",
 		"vendor/SDL2_ttf/include",
 		"vendor/SDL2_mixer/include",
-		"vendor/SDL2_gpu/include"
+		"vendor/SDL2_gpu/include",
+		"vendor/SDL2_FontCache/include"
 	}
 
 	libdirs
@@ -31,7 +32,8 @@ project "TemplateApp"
 		"vendor/SDL2_image/lib",
 		"vendor/SDL2_ttf/lib",
 		"vendor/SDL2_mixer/lib",
-		"vendor/SDL2_gpu/lib"
+		"vendor/SDL2_gpu/lib",
+		"vendor/SDL2_FontCache/lib"
 	}
 
 	links
@@ -58,7 +60,8 @@ project "TemplateApp"
 			"sdl2_imaged.lib",
 			"sdl2_ttfd.lib",
 			"sdl2_mixerd.lib",
-			"sdl2_gpud.lib"
+			"sdl2_gpud.lib",
+			"sdl2_fontcached.lib"
 		}
 
 	filter "configurations:Release"
@@ -74,6 +77,7 @@ project "TemplateApp"
 			"sdl2_image.lib",
 			"sdl2_ttf.lib",
 			"sdl2_mixer.lib",
-			"sdl2_gpu.lib"
+			"sdl2_gpu.lib",
+			"sdl2_fontcache.lib"
 		}
 
