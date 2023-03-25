@@ -2,13 +2,9 @@
 
 namespace App {
 
-	Game::Game(const AppSpecification& specs)
+	Game::Game(const AppSpecs& specs)
 		: Application(specs)
 	{
-		m_Rect.x = 100;
-		m_Rect.y = 100;
-		m_Rect.w = 100;
-		m_Rect.h = 100;
 	}
 
 	Game::~Game()
@@ -17,13 +13,14 @@ namespace App {
 
 	void Game::OnUpdate(float ts)
 	{
-		printf("%.0f FPS\n", 1 / ts);
 	}
 
 	void Game::OnRender()
 	{
-		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(m_Renderer, &m_Rect);
+		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+
+		SDL_Rect rect{ 100, 100, 100, 100 };
+		SDL_RenderFillRect(m_Renderer, &rect);
 	}
 
 	void Game::OnEvent(SDL_Event& event)
@@ -32,7 +29,7 @@ namespace App {
 
 	Application* CreateApplication()
 	{
-		return new Game({ "Test" });
+		return new Game({});
 	}
 
 }
