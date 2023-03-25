@@ -17,7 +17,7 @@ namespace App {
 
 	void Game::OnRender()
 	{
-		SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+		SDL_SetRenderDrawColor(m_Renderer, 255, 0, 0, 255);
 
 		SDL_Rect rect{ 100, 100, 100, 100 };
 		SDL_RenderFillRect(m_Renderer, &rect);

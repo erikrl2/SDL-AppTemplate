@@ -25,7 +25,7 @@ namespace App {
 	private:
 		void Run();
 	protected:
-		bool m_IsRunning = true;
+		bool m_Running = true;
 		SDL_Window* m_Window;
 		SDL_Renderer* m_Renderer;
 	private:
