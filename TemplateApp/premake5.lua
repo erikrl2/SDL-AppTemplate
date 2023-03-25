@@ -32,7 +32,8 @@ project "TemplateApp"
 		"winmm.lib",
 		"imm32.lib",
 		"version.lib",
-		"setupapi.lib"
+		"setupapi.lib",
+		"Glad"
 	}
 
 	filter "system:windows"
@@ -47,8 +48,6 @@ project "TemplateApp"
 		{
 			"sdl2d.lib",
 			"sdl2maind.lib",
-
-			"Glad"
 		}
 
 	filter "configurations:Release"

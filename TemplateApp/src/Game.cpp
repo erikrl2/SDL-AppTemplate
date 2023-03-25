@@ -2,7 +2,7 @@
 
 namespace App {
 
-	Game::Game(const AppSpecification& specs)
+	Game::Game(const AppSpecs& specs)
 		: Application(specs)
 	{
 	}
@@ -25,7 +25,7 @@ namespace App {
 
 	Application* CreateApplication()
 	{
-		return new Game({ "Test" });
+		return new Game({});
 	}
 
 }

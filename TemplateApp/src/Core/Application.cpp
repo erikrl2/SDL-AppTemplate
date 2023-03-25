@@ -4,12 +4,8 @@
 
 namespace App {
 
-	Application::Application(const AppSpecification& specs)
-		: m_Specs(specs)
+	Application::Application(const AppSpecs& specs)
 	{
-		SDL_assert(!s_App);
-		s_App = this;
-
 		if (SDL_Init(SDL_INIT_VIDEO))
 		{
 			std::cout << SDL_GetError() << std::endl;
@@ -22,7 +18,7 @@ namespace App {
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-		m_Window = SDL_CreateWindow(m_Specs.Name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_Specs.Width, m_Specs.Height, SDL_WINDOW_OPENGL);
+		m_Window = SDL_CreateWindow(specs.Name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, specs.Width, specs.Height, SDL_WINDOW_OPENGL);
 
 		m_Context = SDL_GL_CreateContext(m_Window);
 
@@ -67,9 +63,8 @@ namespace App {
 
 			OnUpdate(timeStep);
 
-			glViewport(0, 0, m_Specs.Width, m_Specs.Height);
 			glClearColor(0.7f, 0.3f, 0.2f, 1.0f);
-			glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			OnRender();
 
