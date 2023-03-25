@@ -1,14 +1,14 @@
 #include <iostream>
 
-#include <SDL.h>
+#include <SDL_gpu.h>
 
 int main(int argc, char* argv[]);
 
 namespace App {
 
-	struct AppSpecification
+	struct AppSpecs
 	{
-		std::string Name = "App";
+		std::string Title = "App";
 		int Width = 640;
 		int Height = 480;
 	};
@@ -16,29 +16,18 @@ namespace App {
 	class Application
 	{
 	public:
-		Application(const AppSpecification& specs);
+		Application(const AppSpecs& specs);
 		virtual ~Application();
 
 		virtual void OnUpdate(float ts) = 0;
 		virtual void OnRender() = 0;
 		virtual void OnEvent(SDL_Event& event) = 0;
-
-		SDL_Window* GetWindow() const { return m_Window; }
-		SDL_Renderer* GetRenderer() const { return m_Renderer; }
-		const AppSpecification& GetSpecs() const { return m_Specs; }
-		void Exit();
-
-		static Application& Get() { return *s_Game; }
 	private:
 		void Run();
-	private:
-		AppSpecification m_Specs;
-		bool m_IsRunning = true;
 	protected:
-		SDL_Window* m_Window;
-		SDL_Renderer* m_Renderer;
+		bool m_IsRunning = true;
+		GPU_Target* m_Screen;
 	private:
-		inline static Application* s_Game;
 		friend int ::main(int argc, char* argv[]);
 	};
 
