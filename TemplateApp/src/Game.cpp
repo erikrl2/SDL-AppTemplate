@@ -4,13 +4,14 @@
 
 namespace App {
 
-	Game::Game(const AppSpecification& specs)
+	Game::Game(const AppSpecs& specs)
 		: Application(specs)
 	{
 		m_Texture = IMG_LoadTexture(m_Renderer, "assets/test.png");
 
 		SDL_Surface* img = IMG_Load("assets/test.png");
 		IMG_SaveJPG(img, "assets/test-copy.jpg", 50);
+		SDL_FreeSurface(img);
 	}
 
 	Game::~Game()
@@ -33,7 +34,7 @@ namespace App {
 
 	Application* CreateApplication()
 	{
-		return new Game({ "Test" });
+		return new Game({});
 	}
 
 }
