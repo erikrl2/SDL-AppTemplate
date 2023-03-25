@@ -19,16 +19,12 @@ project "TemplateApp"
 	{
 		"src",
 		"vendor/SDL2/include",
-		"vendor/SDL2_image/include",
-		"vendor/SDL2_ttf/include",
 		"vendor/SDL2_mixer/include"
 	}
 
 	libdirs
 	{
 		"vendor/SDL2/lib",
-		"vendor/SDL2_image/lib",
-		"vendor/SDL2_ttf/lib",
 		"vendor/SDL2_mixer/lib"
 	}
 
@@ -52,8 +48,6 @@ project "TemplateApp"
 		{
 			"sdl2d.lib",
 			"sdl2maind.lib",
-			"sdl2_imaged.lib",
-			"sdl2_ttfd.lib",
 			"sdl2_mixerd.lib"
 		}
 
@@ -67,8 +61,6 @@ project "TemplateApp"
 		{
 			"sdl2.lib",
 			"sdl2main.lib",
-			"sdl2_image.lib",
-			"sdl2_ttf.lib",
 			"sdl2_mixer.lib"
 		}
 

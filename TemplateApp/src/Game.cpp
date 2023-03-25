@@ -2,7 +2,7 @@
 
 namespace App {
 
-	Game::Game(const AppSpecification& specs)
+	Game::Game(const AppSpecs& specs)
 		: Application(specs)
 	{
 		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096);
@@ -21,17 +21,13 @@ namespace App {
 	{
 	}
 
-	void Game::OnRender()
-	{
-	}
-
 	void Game::OnEvent(SDL_Event& event)
 	{
 	}
 
 	Application* CreateApplication()
 	{
-		return new Game({ "Test" });
+		return new Game({});
 	}
 
 }
