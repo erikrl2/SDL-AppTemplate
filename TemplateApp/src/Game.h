@@ -7,7 +7,7 @@ namespace App {
 	class Game : public Application
 	{
 	public:
-		Game(const AppSpecification& specs);
+		Game(const AppSpecs& specs);
 		~Game() override;
 
 		void OnUpdate(float ts) override;

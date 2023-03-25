@@ -4,12 +4,12 @@
 
 namespace App {
 
-	Game::Game(const AppSpecification& specs)
+	Game::Game(const AppSpecs& specs)
 		: Application(specs)
 	{
 		TTF_Init();
 
-		TTF_Font* font = TTF_OpenFont("C:/Windows/Fonts/Arial.ttf", 24);
+		TTF_Font* font = TTF_OpenFont("assets/OpenSans-Regular.ttf", 24);
 		SDL_Surface* surface = TTF_RenderUTF8_Blended(font, "Hello World", { 255, 255, 255, 255 });
 
 		m_Rect = { 50, 50, surface->w, surface->h };
@@ -39,7 +39,7 @@ namespace App {
 
 	Application* CreateApplication()
 	{
-		return new Game({ "Test" });
+		return new Game({});
 	}
 
 }
